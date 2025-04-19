@@ -1,90 +1,245 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Calculator, ChevronRight, Clock, FileText, Mail, MapPin, Shield, Users, MessageSquare } from "lucide-react"
+import { Calculator, ChevronRight, Clock, FileText, Mail, MapPin, Shield, Users, MessageSquare, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { TaxCalculator } from "@/components/tax-calculator"
+import ScrollToSection from "@/components/scroll-to-section"
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const scrollToSection = (sectionId: string) => {
+    setMobileMenuOpen(false)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
+      {/* Add the scroll handler component */}
+      <ScrollToSection />
+
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white">
-        <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+        <div className="container flex h-16 md:h-20 items-center justify-between px-2 md:px-4">
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo.jpg-O4IcwhGPwUjnEHmSYrqEuEwfkz0Jli.jpeg"
               alt="T.M Tax Consultants Logo"
-              width={150}
-              height={60}
-              className="h-12 w-auto" // Set fixed height of 48px (3rem)
+              width={180}
+              height={72}
+              className="h-10 md:h-14 w-auto object-contain"
+              priority
             />
           </Link>
-          <nav className="hidden gap-6 md:flex">
-            <Link href="#about" className="text-sm font-medium text-gray-700 transition-colors hover:text-primary">
-              About Us
-            </Link>
-            <Link href="#services" className="text-sm font-medium text-gray-700 transition-colors hover:text-primary">
-              Our Services
-            </Link>
-            <Link href="#slogan" className="text-sm font-medium text-gray-700 transition-colors hover:text-primary">
-              Our Slogan
-            </Link>
-            <Link href="#team" className="text-sm font-medium text-gray-700 transition-colors hover:text-primary">
-              Our Team
-            </Link>
-            <Link
-              href="#testimonials"
-              className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
-            >
-              Testimonials
-            </Link>
-            <Link href="#calculator" className="text-sm font-medium text-gray-700 transition-colors hover:text-primary">
-              Tax Calculator
-            </Link>
-            <Link
-              href="#verifications"
-              className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
-            >
-              Online Verifications
-            </Link>
-            <Link
-              href="#tax-updates"
-              className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
-            >
-              Latest Tax Updates
-            </Link>
-            <Link href="#contact" className="text-sm font-medium text-gray-700 transition-colors hover:text-primary">
-              Contact Us
-            </Link>
+          <nav className="hidden md:flex items-center">
+            <div className="flex gap-2 lg:gap-4">
+              <Link
+                href="#about"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("about")}
+              >
+                About Us
+              </Link>
+              <Link
+                href="#services"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("services")}
+              >
+                Our Services
+              </Link>
+              <Link
+                href="#slogan"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("slogan")}
+              >
+                Our Slogan
+              </Link>
+              <Link
+                href="#team"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("team")}
+              >
+                Our Team
+              </Link>
+              <Link
+                href="#testimonials"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("testimonials")}
+              >
+                Testimonials
+              </Link>
+              <Link
+                href="#tax-returns"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("tax-returns")}
+              >
+                Persons To File Return
+              </Link>
+              <Link
+                href="#registration-docs"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("registration-docs")}
+              >
+                Registration Documents
+              </Link>
+              <Link
+                href="#calculator"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("calculator")}
+              >
+                Tax Calculator
+              </Link>
+              <Link
+                href="#verifications"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("verifications")}
+              >
+                Online Verifications
+              </Link>
+              <Link
+                href="#tax-updates"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("tax-updates")}
+              >
+                Latest Tax Updates
+              </Link>
+              <Link
+                href="#contact"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={() => scrollToSection("contact")}
+              >
+                Contact Us
+              </Link>
+            </div>
           </nav>
           <div className="flex items-center gap-4">
-            <Button variant="outline" size="icon" className="md:hidden">
+            <Button variant="outline" size="icon" className="md:hidden" onClick={toggleMobileMenu}>
               <span className="sr-only">Toggle menu</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-6 w-6"
-              >
-                <line x1="4" x2="20" y1="12" y2="12" />
-                <line x1="4" x2="20" y1="6" y2="6" />
-                <line x1="4" x2="20" y1="18" y2="18" />
-              </svg>
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-6 w-6"
+                >
+                  <line x1="4" x2="20" y1="12" y2="12" />
+                  <line x1="4" x2="20" y1="6" y2="6" />
+                  <line x1="4" x2="20" y1="18" y2="18" />
+                </svg>
+              )}
             </Button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t py-4">
+            <nav className="container px-2 flex flex-col space-y-3">
+              <Link
+                href="#about"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("about")}
+              >
+                About Us
+              </Link>
+              <Link
+                href="#services"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("services")}
+              >
+                Our Services
+              </Link>
+              <Link
+                href="#slogan"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("slogan")}
+              >
+                Our Slogan
+              </Link>
+              <Link
+                href="#team"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("team")}
+              >
+                Our Team
+              </Link>
+              <Link
+                href="#testimonials"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("testimonials")}
+              >
+                Testimonials
+              </Link>
+              <Link
+                href="#tax-returns"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("tax-returns")}
+              >
+                Persons To File Return
+              </Link>
+              <Link
+                href="#registration-docs"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("registration-docs")}
+              >
+                Registration Documents
+              </Link>
+              <Link
+                href="#calculator"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("calculator")}
+              >
+                Tax Calculator
+              </Link>
+              <Link
+                href="#verifications"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("verifications")}
+              >
+                Online Verifications
+              </Link>
+              <Link
+                href="#tax-updates"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("tax-updates")}
+              >
+                Latest Tax Updates
+              </Link>
+              <Link
+                href="#contact"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("contact")}
+              >
+                Contact Us
+              </Link>
+            </nav>
+          </div>
+        )}
       </header>
 
+      {/* Rest of the page content remains the same */}
       {/* Hero Section */}
-      <section className="w-full bg-gradient-to-r from-[#3a5a81] to-[#4a6fa5] py-10 md:py-16 lg:py-20">
-        <div className="container px-4 md:px-6">
+      <section className="w-full bg-gradient-to-r from-[#3a5a81] to-[#4a6fa5] py-6 md:py-10 lg:py-14">
+        <div className="container px-2 md:px-4">
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <h1 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl">
               Tahir Mahmood Tax Consultants
@@ -100,8 +255,8 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section id="about" className="w-full py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">About Us</div>
@@ -152,8 +307,8 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="w-full bg-gray-50 py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section id="services" className="w-full bg-gray-50 py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Our Services</div>
@@ -199,6 +354,10 @@ export default function Home() {
                     <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
                     <span>Tax Treaty Benefits</span>
                   </li>
+                  <li className="flex items-start gap-2">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                    <span>Point of Sale (POS) Integration</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -226,10 +385,6 @@ export default function Home() {
                   <li className="flex items-start gap-2">
                     <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
                     <span>Sales Tax Refunds</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
-                    <span>Point of Sale (POS) Integration</span>
                   </li>
                 </ul>
               </div>
@@ -386,8 +541,8 @@ export default function Home() {
       </section>
 
       {/* Slogan Video Section */}
-      <section id="slogan" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
-        <div className="container px-4 md:px-6">
+      <section id="slogan" className="w-full py-8 md:py-12 lg:py-16 bg-gray-50">
+        <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Our Slogan</div>
@@ -423,8 +578,8 @@ export default function Home() {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section id="team" className="w-full py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Our Team</div>
@@ -524,8 +679,8 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="w-full bg-gray-50 py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section id="testimonials" className="w-full bg-gray-50 py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Testimonials</div>
@@ -740,9 +895,290 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Persons Required To Furnish A Return Of Income Section */}
+      <section id="tax-returns" className="w-full py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <div className="space-y-2">
+              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">
+                Persons To File Return
+              </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Persons Required To Furnish A Return Of Income
+              </h2>
+              <p className="max-w-[900px] text-gray-500 text-justify md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                According to the Income Tax Ordinance 2001, the following persons are required to file income tax
+                returns:
+              </p>
+            </div>
+          </div>
+
+          <div className="mx-auto max-w-4xl space-y-4">
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                <span className="text-justify">Every company</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                <span className="text-justify">
+                  Every person (other than a company) whose taxable income for the year exceeds the maximum amount that
+                  is not chargeable to tax under Income Tax Ordinance 2001 for the year
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                <span className="text-justify">Any Non-Profit Organization (NPO)</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                <span className="text-justify">
+                  Every person whose income for the year is subject to final taxation under any provision of Income Tax
+                  Ordinance 2001
+                </span>
+              </li>
+              <li className="flex flex-col gap-3">
+                <div className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span>Any person who:</span>
+                </div>
+                <ul className="space-y-3 pl-8">
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span>has been charged to tax in respect of any of the two preceding tax years</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span>claims a loss carried forward under Income Tax Ordinance 2001 for a tax year</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span className="text-justify">
+                      owns immovable property with a land area of 500 square yards or more or owns any flat located in
+                      areas falling within the municipal limits existing immediately before the commencement of Local
+                      Government laws in the provinces or areas in a Cantonment or the Islamabad Capital Territory (ICT)
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span>
+                      owns immoveable property with a land area of 500 square yards or more located in a rating area
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span>owns a flat having covered area of 2000 square feet or more located in a rating area</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span>owns a motor vehicle having engine capacity above 1000 CC</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span>has obtained National Tax Number (NTN)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span className="text-justify">
+                      is the holder of commercial or industrial connection of electricity where the amount of annual
+                      bill exceeds Rs.500,000
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span className="text-justify">
+                      is a resident person registered with any Chamber of Commerce and Industry or any trade or business
+                      association or any market committee or any professional body including Pakistan Engineering
+                      Council, Pakistan Medical and Dental Council, Pakistan Bar Council or any Provincial Bar Council,
+                      Institute of Chartered Accountants of Pakistan (ICAP) or Institute of Cost and Management
+                      Accountants of Pakistan (ICMAP)
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                    <span>
+                      is a resident person being an individual required to file foreign income and assets statement
+                    </span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Documents Required For Registration Section */}
+      <section id="registration-docs" className="w-full bg-gray-50 py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <div className="space-y-2">
+              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">
+                Registration Documents
+              </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Documents Required For Registration
+              </h2>
+              <p className="max-w-[900px] text-gray-500 text-justify md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                The following documents are required for registration with the Federal Board of Revenue (FBR) based on
+                the type of taxpayer:
+              </p>
+            </div>
+          </div>
+
+          <div className="mx-auto max-w-4xl space-y-8">
+            {/* Individual Registration */}
+            <div className="rounded-lg border bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-bold text-[#3a5a81] mb-4">
+                DOCUMENTS REQUIRED FOR REGISTRATION OF AN INDIVIDUAL
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">Original CNIC.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">Cell phone with SIM registered against his own CNIC.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">Personal Email address belonging to him.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original certificate of maintenance of personal bank account in his own name.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original evidence of tenancy / ownership of business premises, if having a business.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original paid utility bill of business premises not older than 3 months, if having a business.
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            {/* AOP Registration */}
+            <div className="rounded-lg border bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-bold text-[#3a5a81] mb-4">DOCUMENTS REQUIRED FOR REGISTRATION OF AN AOP</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">Original partnership deed, in case of Firm.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original registration certificate from Registrar of Firms, in case of Firm.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">CNICs of all Members / Partners.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original letter on letterhead of the AOP signed by all Members / Partners, authorizing anyone of the
+                    Members / Partners for Income / Sales Tax Registration.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Cell phone with SIM registered against his own CNIC but not already registered with the FBR.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">Email address belonging to the AOP.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original certificate of maintenance of bank account in AOP's name.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original evidence of tenancy / ownership of business premises, if having a business.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original paid utility bill of business premises not older than 3 months, if having a business.
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Company Registration */}
+            <div className="rounded-lg border bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-bold text-[#3a5a81] mb-4">
+                DOCUMENTS REQUIRED FOR REGISTRATION OF A COMPANY
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">Incorporation Certificate of the Company.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">CNICs of all Directors.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original letter on letterhead of the company signed by all Directors, verifying the Principal
+                    Officer and authorizing him for Income Tax / Sales Tax Registration.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Cell phone with SIM registered against his own CNIC but not already registered with the FBR.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">Email address belonging to the Company.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original certificate of maintenance of bank account in Company's name.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original evidence of tenancy / ownership of business premises, if having a business.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
+                  <span className="text-justify">
+                    Original paid utility bill of business premises not older than 3 months, if having a business.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Tax Calculator Section */}
-      <section id="calculator" className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section id="calculator" className="w-full py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Tax Calculator</div>
@@ -759,8 +1195,8 @@ export default function Home() {
       </section>
 
       {/* Online Verifications Section */}
-      <section id="verifications" className="w-full bg-gray-50 py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section id="verifications" className="w-full bg-gray-50 py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">
@@ -819,8 +1255,8 @@ export default function Home() {
       </section>
 
       {/* Latest Tax Updates Section */}
-      <section id="tax-updates" className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section id="tax-updates" className="w-full py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">
@@ -975,129 +1411,178 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section id="contact" className="w-full py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Contact Us</div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get in Touch</h2>
             </div>
           </div>
-          <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
-            <div className="space-y-4">
-              <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Have questions or ready to get started? Reach out to our team today.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <MapPin className="h-6 w-6 text-[#e63946]" />
-                  <div>
-                    <h3 className="font-medium">Address</h3>
-                    <p className="text-gray-500">
-                      House 163, Street F179, Block D, DHA Phase 9 Town, DHA, Lahore, Pakistan
-                    </p>
+          <div className="mx-auto max-w-3xl">
+            <div className="rounded-lg border bg-white p-8 shadow-sm">
+              <div className="flex flex-col items-center space-y-6">
+                <div className="space-y-2 text-center mb-6">
+                  <h3 className="text-2xl font-bold text-[#3a5a81]">We're Here to Help</h3>
+                  <p className="text-gray-500">Have questions or ready to get started? Reach out to our team today.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                  <div className="flex items-start gap-4">
+                    <MapPin className="h-6 w-6 text-[#e63946] flex-shrink-0" />
+                    <div>
+                      <h3 className="font-medium">Address</h3>
+                      <p className="text-gray-500">
+                        House 163, Street F179, Block D, DHA Phase 9 Town, DHA, Lahore, Pakistan
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <MessageSquare className="h-6 w-6 text-[#e63946] flex-shrink-0" />
+                    <div>
+                      <h3 className="font-medium">WhatsApp</h3>
+                      <p className="text-gray-500">+923006699423, +923226392423</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <Mail className="h-6 w-6 text-[#e63946] flex-shrink-0" />
+                    <div>
+                      <h3 className="font-medium">Email</h3>
+                      <p className="text-gray-500">tmtaxconsultants2@gmail.com</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <Clock className="h-6 w-6 text-[#e63946] flex-shrink-0" />
+                    <div>
+                      <h3 className="font-medium">Hours</h3>
+                      <p className="text-gray-500">Monday - Thursday: 10am - 10pm</p>
+                      <p className="text-gray-500">Friday: 3pm - 10pm</p>
+                      <p className="text-gray-500">Saturday & Sunday: 10am - 10pm</p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <MessageSquare className="h-6 w-6 text-[#e63946]" />
-                  <div>
-                    <h3 className="font-medium">WhatsApp</h3>
-                    <p className="text-gray-500">+923006699423, +923226392423</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Mail className="h-6 w-6 text-[#e63946]" />
-                  <div>
-                    <h3 className="font-medium">Email</h3>
-                    <p className="text-gray-500">tmtaxconsultants2@gmail.com</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Clock className="h-6 w-6 text-[#e63946]" />
-                  <div>
-                    <h3 className="font-medium">Hours</h3>
-                    <p className="text-gray-500">Monday - Thursday: 10am - 10pm</p>
-                    <p className="text-gray-500">Friday: 3pm - 10pm</p>
-                    <p className="text-gray-500">Saturday & Sunday: 10am - 10pm</p>
-                  </div>
+                <div className="flex gap-4 justify-center pt-4">
+                  <Link
+                    href="https://www.facebook.com/profile.php?id=61564913033812"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-[#1877F2]/10 p-2 text-[#1877F2] hover:bg-[#1877F2]/20"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                    <span className="sr-only">Facebook</span>
+                  </Link>
+                  <Link
+                    href="https://www.instagram.com/tahir11063/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-[#E4405F]/10 p-2 text-[#E4405F] hover:bg-[#E4405F]/20"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                    </svg>
+                    <span className="sr-only">Instagram</span>
+                  </Link>
+                  <Link
+                    href="https://www.linkedin.com/company/t-m-tax-consultants/?viewAsMember=true"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-[#0A66C2]/10 p-2 text-[#0A66C2] hover:bg-[#0A66C2]/20"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect width="4" height="12" x="2" y="9" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg>
+                    <span className="sr-only">LinkedIn</span>
+                  </Link>
+                  <Link
+                    href="https://www.youtube.com/@tahir11063"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-[#FF0000]/10 p-2 text-[#FF0000] hover:bg-[#FF0000]/20"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                      <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+                    </svg>
+                    <span className="sr-only">YouTube</span>
+                  </Link>
+                  <Link
+                    href="https://www.tiktok.com/@tahir.mahmood6890"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-[#000000]/10 p-2 text-[#000000] hover:bg-[#000000]/20"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="h-5 w-5"
+                    >
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.41v13.67a2.89 2.89 0 0 1-5.0 1.96 2.89 2.89 0 0 1 2.47-5.18c.34 0 .68.06 1.0.17v-3.52A6.32 6.32 0 0 0 5.4 10.52a6.34 6.34 0 1 0 9.39 8.4v-5.5a8.16 8.16 0 0 0 4.8 1.5v-3.45a4.85 4.85 0 0 1-1.84-.45z" />
+                    </svg>
+                    <span className="sr-only">TikTok</span>
+                  </Link>
+                  <Link
+                    href="https://www.google.com/maps/place/T.M+Tax+Consultants/@31.4363995,74.435064,17z/data=!3m1!4b1!4m6!3m5!1s0x3919095e2a93dedb:0x3e17a3a3928c3ebd!8m2!3d31.4363949!4d74.4376389!16s%2Fg%2F11w9xpcs_d?authuser=0&entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-[#4285F4]/10 p-2 text-[#4285F4] hover:bg-[#4285F4]/20"
+                  >
+                    <MapPin className="h-5 w-5" />
+                    <span className="sr-only">Location</span>
+                  </Link>
                 </div>
               </div>
-            </div>
-            <div className="rounded-lg border bg-white p-6 shadow-sm">
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="first-name"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      First name
-                    </label>
-                    <input
-                      id="first-name"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder="Enter your first name"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="last-name"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Last name
-                    </label>
-                    <input
-                      id="last-name"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder="Enter your last name"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Enter your email"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label
-                    htmlFor="phone"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Phone
-                  </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Enter your phone"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label
-                    htmlFor="message"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    className="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Enter your message"
-                  />
-                </div>
-                <Button className="w-full" type="submit">
-                  Send Message
-                </Button>
-              </form>
             </div>
           </div>
         </div>
@@ -1105,176 +1590,100 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="w-full border-t bg-gray-50 py-6 md:py-12">
-        <div className="container px-4 md:px-6">
-          {/* First row: Navigation links and social media icons */}
-          <div className="flex flex-col items-center gap-8">
+        <div className="container px-2 md:px-4">
+          {/* First row: Logo, Navigation links */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            {/* Logo on the left */}
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center gap-2">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo.jpg-O4IcwhGPwUjnEHmSYrqEuEwfkz0Jli.jpeg"
+                  alt="T.M Tax Consultants Logo"
+                  width={150}
+                  height={60}
+                  className="h-9 md:h-12 w-auto object-contain"
+                />
+              </Link>
+            </div>
+
+            {/* Navigation links in the center/right */}
             <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
-              <Link href="#about" className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]">
+              <Link
+                href="#about"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("about")}
+              >
                 About Us
               </Link>
               <Link
                 href="#services"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("services")}
               >
                 Our Services
               </Link>
-              <Link href="#slogan" className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]">
+              <Link
+                href="#slogan"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("slogan")}
+              >
                 Our Slogan
               </Link>
-              <Link href="#team" className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]">
+              <Link
+                href="#team"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("team")}
+              >
                 Our Team
               </Link>
               <Link
                 href="#testimonials"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("testimonials")}
               >
                 Testimonials
               </Link>
               <Link
+                href="#tax-returns"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("tax-returns")}
+              >
+                Persons To File Return
+              </Link>
+              <Link
+                href="#registration-docs"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("registration-docs")}
+              >
+                Registration Documents
+              </Link>
+              <Link
                 href="#calculator"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("calculator")}
               >
                 Tax Calculator
               </Link>
               <Link
                 href="#verifications"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("verifications")}
               >
                 Online Verifications
               </Link>
               <Link
                 href="#tax-updates"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("tax-updates")}
               >
                 Latest Tax Updates
               </Link>
               <Link
                 href="#contact"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("contact")}
               >
                 Contact Us
-              </Link>
-            </div>
-            <div className="flex gap-4 justify-center">
-              <Link
-                href="https://www.facebook.com/profile.php?id=61564913033812"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-[#1877F2]/10 p-2 text-[#1877F2] hover:bg-[#1877F2]/20"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5"
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-                <span className="sr-only">Facebook</span>
-              </Link>
-              <Link
-                href="https://www.instagram.com/tahir11063/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-[#E4405F]/10 p-2 text-[#E4405F] hover:bg-[#E4405F]/20"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5"
-                >
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link
-                href="https://www.linkedin.com/company/t-m-tax-consultants/?viewAsMember=true"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-[#0A66C2]/10 p-2 text-[#0A66C2] hover:bg-[#0A66C2]/20"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <rect width="4" height="12" x="2" y="9" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-                <span className="sr-only">LinkedIn</span>
-              </Link>
-              <Link
-                href="https://www.youtube.com/@tahir11063"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-[#FF0000]/10 p-2 text-[#FF0000] hover:bg-[#FF0000]/20"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5"
-                >
-                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
-                </svg>
-                <span className="sr-only">YouTube</span>
-              </Link>
-              <Link
-                href="https://www.tiktok.com/@tahir.mahmood6890"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-[#000000]/10 p-2 text-[#000000] hover:bg-[#000000]/20"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="h-5 w-5"
-                >
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.41v13.67a2.89 2.89 0 0 1-5.0 1.96 2.89 2.89 0 0 1 2.47-5.18c.34 0 .68.06 1.0.17v-3.52A6.32 6.32 0 0 0 5.4 10.52a6.34 6.34 0 1 0 9.39 8.4v-5.5a8.16 8.16 0 0 0 4.8 1.5v-3.45a4.85 4.85 0 0 1-1.84-.45z" />
-                </svg>
-                <span className="sr-only">TikTok</span>
-              </Link>
-              <Link
-                href="https://www.google.com/maps/place/T.M+Tax+Consultants/@31.4363995,74.435064,17z/data=!3m1!4b1!4m6!3m5!1s0x3919095e2a93dedb:0x3e17a3a3928c3ebd!8m2!3d31.4363949!4d74.4376389!16s%2Fg%2F11w9xpcs_d?authuser=0&entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-[#4285F4]/10 p-2 text-[#4285F4] hover:bg-[#4285F4]/20"
-              >
-                <MapPin className="h-5 w-5" />
-                <span className="sr-only">Location</span>
               </Link>
             </div>
           </div>
