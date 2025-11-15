@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Calculator, ChevronRight, Clock, FileText, Mail, MapPin, Shield, Users, MessageSquare, X } from "lucide-react"
+import { Calculator, ChevronRight, Clock, FileText, Mail, MapPin, Shield, Users, MessageSquare, X, Target, Lightbulb, Heart, CheckCircle, Building2, Sparkles, Eye, Briefcase } from 'lucide-react'
 
 import { Button } from "@/components/ui/button"
 import { TaxCalculator } from "@/components/tax-calculator"
@@ -31,100 +31,118 @@ export default function Home() {
 
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white">
-        <div className="container flex h-16 md:h-20 items-center justify-between px-2 md:px-4">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo.jpg-O4IcwhGPwUjnEHmSYrqEuEwfkz0Jli.jpeg"
-              alt="T.M Tax Consultants Logo"
-              width={180}
-              height={72}
-              className="h-10 md:h-14 w-auto object-contain"
-              priority
-            />
-          </Link>
-          <nav className="hidden md:flex items-center">
-            <div className="flex gap-2 lg:gap-4">
-              <Link
-                href="#about"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("about")}
-              >
-                About Us
-              </Link>
-              <Link
-                href="#services"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("services")}
-              >
-                Our Services
-              </Link>
-              <Link
-                href="#slogan"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("slogan")}
-              >
-                Our Slogan
-              </Link>
-              <Link
-                href="#team"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("team")}
-              >
-                Our Team
-              </Link>
-              <Link
-                href="#testimonials"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("testimonials")}
-              >
-                Testimonials
-              </Link>
-              <Link
-                href="#tax-returns"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("tax-returns")}
-              >
-                Persons To File Return
-              </Link>
-              <Link
-                href="#registration-docs"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("registration-docs")}
-              >
-                Registration Documents
-              </Link>
-              <Link
-                href="#calculator"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("calculator")}
-              >
-                Tax Calculator
-              </Link>
-              <Link
-                href="#verifications"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("verifications")}
-              >
-                Online Verifications
-              </Link>
-              <Link
-                href="#tax-updates"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("tax-updates")}
-              >
-                Latest Tax Updates
-              </Link>
-              <Link
-                href="#contact"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("contact")}
-              >
-                Contact Us
-              </Link>
-            </div>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button variant="outline" size="icon" className="md:hidden" onClick={toggleMobileMenu}>
+        <div className="container px-2 md:px-4">
+          <div className="flex h-16 md:h-20 items-center justify-between gap-4 mb-0">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+              <Image
+                src="/images/design-mode/Logo.jpg.jpeg"
+                alt="T.M Tax Consultants Logo"
+                width={180}
+                height={72}
+                className="h-10 md:h-14 w-auto object-contain"
+                priority
+              />
+            </Link>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center flex-1 px-4">
+              <div className="flex gap-3 flex-wrap justify-center w-full">
+                <Link
+                  href="#about"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("about")}
+                >
+                  About Us
+                </Link>
+                <Link
+                  href="#services"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("services")}
+                >
+                  Our Services
+                </Link>
+                <Link
+                  href="#slogan"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("slogan")}
+                >
+                  Our Slogan
+                </Link>
+                <Link
+                  href="#team"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("team")}
+                >
+                  Our Team
+                </Link>
+                <Link
+                  href="#testimonials"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("testimonials")}
+                >
+                  Testimonials
+                </Link>
+                <Link
+                  href="#tax-returns"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("tax-returns")}
+                >
+                  Persons To File Return
+                </Link>
+                <Link
+                  href="#registration-docs"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("registration-docs")}
+                >
+                  Registration Documents
+                </Link>
+                <Link
+                  href="#calculator"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("calculator")}
+                >
+                  Tax Calculator
+                </Link>
+                <Link
+                  href="#tax-laws"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("tax-laws")}
+                >
+                  Pakistan Tax Laws & Rules
+                </Link>
+                <Link
+                  href="#verifications"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("verifications")}
+                >
+                  Online Verifications
+                </Link>
+                <Link
+                  href="#tax-updates"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("tax-updates")}
+                >
+                  Latest Tax Updates
+                </Link>
+                <Link
+                  href="/faqs"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                >
+                  FAQs
+                </Link>
+                <Link
+                  href="#contact"
+                  className="text-xs lg:text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
+                  onClick={() => scrollToSection("contact")}
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </nav>
+            
+            {/* Mobile Menu Button */}
+            <Button variant="outline" size="icon" className="lg:hidden bg-transparent" onClick={toggleMobileMenu}>
               <span className="sr-only">Toggle menu</span>
               {mobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -139,21 +157,18 @@ export default function Home() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-6 w-6"
                 >
-                  <line x1="4" x2="20" y1="12" y2="12" />
                   <line x1="4" x2="20" y1="6" y2="6" />
+                  <line x1="4" x2="20" y1="12" y2="12" />
                   <line x1="4" x2="20" y1="18" y2="18" />
                 </svg>
               )}
             </Button>
           </div>
-        </div>
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t py-4">
-            <nav className="container px-2 flex flex-col space-y-3">
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <nav className="lg:hidden pb-4 flex flex-col gap-2">
               <Link
                 href="#about"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
@@ -211,6 +226,13 @@ export default function Home() {
                 Tax Calculator
               </Link>
               <Link
+                href="#tax-laws"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+                onClick={() => scrollToSection("tax-laws")}
+              >
+                Pakistan Tax Laws & Rules
+              </Link>
+              <Link
                 href="#verifications"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
                 onClick={() => scrollToSection("verifications")}
@@ -225,6 +247,12 @@ export default function Home() {
                 Latest Tax Updates
               </Link>
               <Link
+                href="/faqs"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
+              >
+                FAQs
+              </Link>
+              <Link
                 href="#contact"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
                 onClick={() => scrollToSection("contact")}
@@ -232,11 +260,10 @@ export default function Home() {
                 Contact Us
               </Link>
             </nav>
-          </div>
-        )}
+          )}
+        </div>
       </header>
 
-      {/* Rest of the page content remains the same */}
       {/* Hero Section */}
       <section className="w-full bg-gradient-to-r from-[#3a5a81] to-[#4a6fa5] py-6 md:py-10 lg:py-14">
         <div className="container px-2 md:px-4">
@@ -259,12 +286,12 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">About Us</div>
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">About Us</div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Your Trusted Tax Partner</h2>
             </div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="space-y-4 max-w-3xl mx-auto">
+            <div className="space-y-8 max-w-3xl mx-auto">
               <div className="space-y-4 text-gray-500 text-justify md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 <p>
                   T.M TAX CONSULTANTS is a trusted tax consultancy firm dedicated to providing precise and tailored
@@ -283,7 +310,7 @@ export default function Home() {
                 </p>
                 <p className="font-medium text-[#3a5a81] text-center">Your trust. Our expertise.</p>
               </div>
-              <ul className="grid gap-2 mt-6 max-w-md mx-auto">
+              <ul className="grid gap-2 max-w-md mx-auto">
                 <li className="flex items-center gap-2">
                   <ChevronRight className="h-4 w-4 text-[#e63946]" />
                   <span>Personalized Tax Solutions</span>
@@ -301,6 +328,75 @@ export default function Home() {
                   <span>Regulatory Compliance</span>
                 </li>
               </ul>
+
+              <div className="space-y-8 mt-12 pt-8 border-t border-gray-200">
+                {/* Vision */}
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  <div className="flex-shrink-0">
+                    <div className="rounded-full bg-[#3a5a81]/10 p-4">
+                      <Target className="h-8 w-8 text-[#3a5a81]" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-[#3a5a81] mb-2">Vision</h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      To be the most trusted advisor in every client's financial journey, transforming tax compliance
+                      from a burden into a strategic advantage.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mission */}
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  <div className="flex-shrink-0">
+                    <div className="rounded-full bg-[#e63946]/10 p-4">
+                      <Lightbulb className="h-8 w-8 text-[#e63946]" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-[#e63946] mb-2">Mission</h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      To provide expert, proactive tax strategies and compliance services that minimize liability,
+                      maximize opportunity and eliminate stress for our clients.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Core Values */}
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  <div className="flex-shrink-0">
+                    <div className="rounded-full bg-[#3a5a81]/10 p-4">
+                      <Sparkles className="h-8 w-8 text-[#3a5a81]" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-[#3a5a81] mb-4">Core Values</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                      {[
+                        { icon: Heart, label: "Integrity", color: "text-[#e63946]" },
+                        { icon: CheckCircle, label: "Excellence", color: "text-[#3a5a81]" },
+                        { icon: Users, label: "Client First", color: "text-[#e63946]" },
+                        { icon: Shield, label: "Confidentiality", color: "text-[#3a5a81]" },
+                        { icon: Lightbulb, label: "Innovation", color: "text-[#e63946]" },
+                        { icon: FileText, label: "Compliance & Accountability", color: "text-[#3a5a81]" },
+                        { icon: Users, label: "Collaboration", color: "text-[#e63946]" },
+                        { icon: Eye, label: "Clarity & Transparency", color: "text-[#3a5a81]" },
+                      ].map((value, index) => {
+                        const Icon = value.icon
+                        return (
+                          <div
+                            key={index}
+                            className="flex flex-col items-center gap-2 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                          >
+                            <Icon className={`h-6 w-6 flex-shrink-0 ${value.color}`} />
+                            <span className="font-medium text-gray-700 text-sm text-center">{value.label}</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -311,7 +407,7 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Our Services</div>
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">Our Services</div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Comprehensive Tax Solutions
               </h2>
@@ -536,6 +632,82 @@ export default function Home() {
                 </li>
               </ul>
             </div>
+
+            {/* Company Registration */}
+            <div className="rounded-lg border bg-white p-6 shadow-sm">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="rounded-full bg-[#3a5a81]/10 p-3">
+                  <Building2 className="h-6 w-6 text-[#3a5a81]" />
+                </div>
+                <h3 className="text-2xl font-bold">Company Registration</h3>
+              </div>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                  <span>Registration with Securities and Exchange Commission of Pakistan (SECP)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                  <span>Name Reservation</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                  <span>Issuance of Certificate of Incorporation</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                  <span>Single Member Company (SMC)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                  <span>Private Limited Company</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                  <span>Partnership</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Services For Freelancers */}
+            <div className="rounded-lg border bg-white p-6 shadow-sm">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="rounded-full bg-[#3a5a81]/10 p-3">
+                  <Briefcase className="h-6 w-6 text-[#3a5a81]" />
+                </div>
+                <h3 className="text-2xl font-bold">Services For Freelancers</h3>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                    <span>Foreign Income</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                    <span>Local Income</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                    <span>Pakistan Software Export Board (PSEB)</span>
+                  </li>
+                </ul>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                    <span>Information Technology (IT)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                    <span>IT-enabled Services (ITeS)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-0.5 flex-shrink-0" />
+                    <span>Proceeds Realization Certificate (PRC)</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -545,7 +717,7 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Our Slogan</div>
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">Our Slogan</div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Our Commitment to Excellence
               </h2>
@@ -559,7 +731,7 @@ export default function Home() {
             <div className="relative rounded-lg overflow-hidden shadow-xl">
               <video className="w-full h-auto" controls poster="/placeholder.svg?height=600&width=800">
                 <source
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Slogan%281080%20x%201350%20px%29-aNYHwarE7zFtxfenbgjTzagfMGGKvL.mp4"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Our%20Slogan-Gk16fPHGYyoOhPn9SoAzkm4qyqJiyH.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -582,7 +754,7 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Our Team</div>
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">Our Team</div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Meet Our Experts</h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Our team of certified professionals is dedicated to providing you with the best tax consulting services.
@@ -595,7 +767,7 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm">
               <div className="relative h-40 w-40 overflow-hidden rounded-full">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WEA.jpg-oN4Xotfh0KtGaVZpGjQlZ6yDG4gXt7.jpeg"
+                  src="/images/design-mode/WEA.jpg.jpeg"
                   alt="Tahir Mahmood"
                   width={160}
                   height={160}
@@ -616,7 +788,7 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm">
               <div className="relative h-40 w-40 overflow-hidden rounded-full">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1742284212766.jpg-HJ9bXTDXOXzX8bTWbkF5bjwrB7V907.jpeg"
+                  src="/images/design-mode/1742284212766.jpg.jpeg"
                   alt="Muhammad Yasir Ehsan"
                   width={160}
                   height={160}
@@ -637,7 +809,7 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm">
               <div className="relative h-40 w-40 overflow-hidden rounded-full">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1742285757638.jpg-bzFKPSQRUJvC0QGhWJQGfL2wiHa8EA.jpeg"
+                  src="/images/design-mode/1742285757638.jpg.jpeg"
                   alt="Muhammad Huwaiza Tahir"
                   width={160}
                   height={160}
@@ -658,7 +830,7 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm">
               <div className="relative h-40 w-40 overflow-hidden rounded-full">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1742289512602.jpg-uLJcvZsprTXCIZGPKDymKPhbl1P2in.jpeg"
+                  src="/images/design-mode/1742289512602.jpg.jpeg"
                   alt="Anam Fatima"
                   width={160}
                   height={160}
@@ -683,7 +855,7 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Testimonials</div>
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">Testimonials</div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">What Our Clients Say</h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Don't just take our word for it. Here's what our satisfied clients have to say.
@@ -863,6 +1035,106 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-gray-500">
+                  "Reliable, knowledgeable, and fully up-to-date with Pakistan's complex tax laws — T.M Tax Consultants
+                  truly sets the standard for tax consultancy services."
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="rounded-full bg-gray-100 p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-8 w-8 text-gray-500"
+                  >
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-medium">Muhammad Asad</p>
+                  <p className="text-sm text-gray-500">Civil Engineer</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col justify-between space-y-4 rounded-lg border bg-white p-6 shadow-sm">
+              <div className="space-y-2">
+                <div className="flex gap-1 text-[#e63946]">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-500">
+                  "We had a good experience with T.M Tax Consultants. The team is highly intelligent and our working
+                  relationship has been excellent. Their service is also very fast and efficient."
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="rounded-full bg-gray-100 p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-8 w-8 text-gray-500"
+                  >
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-medium">Zahid Mahmood</p>
+                  <p className="text-sm text-gray-500">Evaluator</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col justify-between space-y-4 rounded-lg border bg-white p-6 shadow-sm">
+              <div className="space-y-2">
+                <div className="flex gap-1 text-[#e63946]">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-500">
                   "T.M Tax Consultants provided exceptional services, making my tax filing process smooth and
                   stress-free. Their team was knowledgeable and professional."
                 </p>
@@ -900,7 +1172,7 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">
                 Persons To File Return
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -961,24 +1233,6 @@ export default function Home() {
                   </li>
                   <li className="flex items-start gap-3">
                     <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
-                    <span>
-                      owns immoveable property with a land area of 500 square yards or more located in a rating area
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
-                    <span>owns a flat having covered area of 2000 square feet or more located in a rating area</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
-                    <span>owns a motor vehicle having engine capacity above 1000 CC</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
-                    <span>has obtained National Tax Number (NTN)</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
                     <span className="text-justify">
                       is the holder of commercial or industrial connection of electricity where the amount of annual
                       bill exceeds Rs.500,000
@@ -986,7 +1240,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-start gap-3">
                     <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
-                    <span className="text-justify">
+                    <span>
                       is a resident person registered with any Chamber of Commerce and Industry or any trade or business
                       association or any market committee or any professional body including Pakistan Engineering
                       Council, Pakistan Medical and Dental Council, Pakistan Bar Council or any Provincial Bar Council,
@@ -1012,7 +1266,7 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">
                 Registration Documents
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -1127,44 +1381,44 @@ export default function Home() {
                 DOCUMENTS REQUIRED FOR REGISTRATION OF A COMPANY
               </h3>
               <ul className="space-y-3">
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2">
                   <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
                   <span className="text-justify">Incorporation Certificate of the Company.</span>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2">
                   <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
                   <span className="text-justify">CNICs of all Directors.</span>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2">
                   <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
                   <span className="text-justify">
                     Original letter on letterhead of the company signed by all Directors, verifying the Principal
                     Officer and authorizing him for Income Tax / Sales Tax Registration.
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2">
                   <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
                   <span className="text-justify">
                     Cell phone with SIM registered against his own CNIC but not already registered with the FBR.
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2">
                   <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
                   <span className="text-justify">Email address belonging to the Company.</span>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2">
                   <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
                   <span className="text-justify">
                     Original certificate of maintenance of bank account in Company's name.
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2">
                   <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
                   <span className="text-justify">
                     Original evidence of tenancy / ownership of business premises, if having a business.
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2">
                   <ChevronRight className="h-5 w-5 text-[#e63946] mt-1 flex-shrink-0" />
                   <span className="text-justify">
                     Original paid utility bill of business premises not older than 3 months, if having a business.
@@ -1181,16 +1435,135 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Tax Calculator</div>
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">Tax Calculator</div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Calculate Your Tax Liability
               </h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Use our free tax calculator to estimate your income tax based on the latest FBR tax slabs for 2024-25.
+                Use our free tax calculator to estimate your income tax based on the latest FBR tax slabs for 2025-26.
               </p>
             </div>
           </div>
           <TaxCalculator />
+        </div>
+      </section>
+
+      <section id="tax-laws" className="w-full py-8 md:py-12 lg:py-16">
+        <div className="container px-2 md:px-4">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <div className="space-y-2">
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">
+                Pakistan Tax Laws & Rules
+              </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Understanding Pakistan Tax Laws & Rules
+              </h2>
+              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Access and download the complete texts of Pakistan's key tax statutes, including the Income Tax
+                Ordinance, 2001; Sales Tax Act, 1990; Federal Excise Act, 2005; Customs Act, 1969; Income Tax Rules,
+                2002; Sales Tax Rules, 2006; Federal Excise Rules, 2005; and Customs Rules, 2001.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Income Tax Ordinance */}
+            <a
+              href="https://download1.fbr.gov.pk/Docs/2025881983148210Income-Tax-Ordinance,-2001-Amended-upto-31.07.2025.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center p-6 rounded-lg border border-gray-200 hover:border-[#e63946] hover:bg-red-50 transition-colors"
+            >
+              <FileText className="w-12 h-12 text-[#e63946] mb-3" />
+              <h3 className="font-semibold text-center mb-2">Income Tax Ordinance, 2001</h3>
+              <p className="text-sm text-gray-500 text-center">Amended up to 31.07.2025</p>
+            </a>
+
+            {/* Sales Tax Act */}
+            <a
+              href="https://download1.fbr.gov.pk/Docs/202586148252375SalesTaxActupdatedupto2025-26.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center p-6 rounded-lg border border-gray-200 hover:border-[#e63946] hover:bg-red-50 transition-colors"
+            >
+              <FileText className="w-12 h-12 text-[#e63946] mb-3" />
+              <h3 className="font-semibold text-center mb-2">Sales Tax Act, 1990</h3>
+              <p className="text-sm text-gray-500 text-center">Updated up to 2025-26</p>
+            </a>
+
+            {/* Federal Excise Act */}
+            <a
+              href="https://download1.fbr.gov.pk/Docs/202588138517680FEDAct,2005withindexupdatedupto30-06-2025.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center p-6 rounded-lg border border-gray-200 hover:border-[#e63946] hover:bg-red-50 transition-colors"
+            >
+              <FileText className="w-12 h-12 text-[#e63946] mb-3" />
+              <h3 className="font-semibold text-center mb-2">Federal Excise Act, 2005</h3>
+              <p className="text-sm text-gray-500 text-center">Updated up to 30.06.2025</p>
+            </a>
+
+            {/* Customs Act */}
+            <a
+              href="https://download1.fbr.gov.pk/Docs/20258121285942396CustomsAct1969(June2025)-(12.8.25).pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center p-6 rounded-lg border border-gray-200 hover:border-[#e63946] hover:bg-red-50 transition-colors"
+            >
+              <FileText className="w-12 h-12 text-[#e63946] mb-3" />
+              <h3 className="font-semibold text-center mb-2">Customs Act, 1969</h3>
+              <p className="text-sm text-gray-500 text-center">June 2025 Version</p>
+            </a>
+
+            {/* CHANGE: Added second row with Tax Rules documents */}
+            {/* Income Tax Rules */}
+            <a
+              href="https://download1.fbr.gov.pk/Docs/2023112416114319348IncomeTaxRules2002AmendedUpto24.11.2023.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center p-6 rounded-lg border border-gray-200 hover:border-[#e63946] hover:bg-red-50 transition-colors"
+            >
+              <FileText className="w-12 h-12 text-[#e63946] mb-3" />
+              <h3 className="font-semibold text-center mb-2">Income Tax Rules, 2002</h3>
+              <p className="text-sm text-gray-500 text-center">Amended up to 24.11.2023</p>
+            </a>
+
+            {/* Sales Tax Rules */}
+            <a
+              href="https://download1.fbr.gov.pk/Docs/2025881385446623STR-2006-UpdatedUpto06-08-2025(ver-iv).pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center p-6 rounded-lg border border-gray-200 hover:border-[#e63946] hover:bg-red-50 transition-colors"
+            >
+              <FileText className="w-12 h-12 text-[#e63946] mb-3" />
+              <h3 className="font-semibold text-center mb-2">Sales Tax Rules, 2006</h3>
+              <p className="text-sm text-gray-500 text-center">Updated up to 06.08.2025</p>
+            </a>
+
+            {/* Federal Excise Rules */}
+            <a
+              href="https://download1.fbr.gov.pk/Docs/2023111018112130929FED-Rules-2005-updated-upto-31.10.2023.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center p-6 rounded-lg border border-gray-200 hover:border-[#e63946] hover:bg-red-50 transition-colors"
+            >
+              <FileText className="w-12 h-12 text-[#e63946] mb-3" />
+              <h3 className="font-semibold text-center mb-2">Federal Excise Rules, 2005</h3>
+              <p className="text-sm text-gray-500 text-center">Updated up to 31.10.2023</p>
+            </a>
+
+            {/* Customs Rules */}
+            <a
+              href="https://download1.fbr.gov.pk/Docs/2023102014103110714Customs-Rules-SRO-450(I)-2001.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center p-6 rounded-lg border border-gray-200 hover:border-[#e63946] hover:bg-red-50 transition-colors"
+            >
+              <FileText className="w-12 h-12 text-[#e63946] mb-3" />
+              <h3 className="font-semibold text-center mb-2">Customs Rules, 2001</h3>
+              <p className="text-sm text-gray-500 text-center">SRO 450(I)</p>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1199,7 +1572,7 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">
                 Online Verifications
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Verify Tax Status Online</h2>
@@ -1259,7 +1632,7 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">
                 Latest Tax Updates
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Stay Informed</h2>
@@ -1278,23 +1651,22 @@ export default function Home() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                    <h3 className="text-xl font-bold">Further Amendments in the Sales Tax Rules, 2006</h3>
-                    <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">April 8, 2025</span>
+                    <h3 className="text-xl font-bold">FBR Finance Act, 2025</h3>
+                    <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">July 1, 2025</span>
                   </div>
                   <p className="text-gray-600">
-                    In exercise of the powers conferred by sub-section (l) of section 4, sub-section (2A) of section 6
-                    and section 40 of the Federal Excise Act, 2005 and sub-section (l) of section 50 of the Sales Tax
-                    Act, 1990, read with section 26 thereof, the Federal Board of Revenue (FBR) has made further
-                    amendments in the Sales Tax Rules, 2006.
+                    The Finance Act, 2025 has introduced major amendments to the Income Tax Ordinance, 2001. These
+                    include updates in withholding tax structure, treatment of pensions, capital gains, and digital
+                    compliance.These reforms aim to broaden the tax base and simplify compliance for all taxpayers.
                   </p>
                   <div className="pt-2">
                     <Link
-                      href="https://download1.fbr.gov.pk/SROs/2025491445056689SRO578.pdf"
+                      href="https://fbr.gov.pk/Budget2025-26/FinanceBill/Finance-Bill-2025.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#3a5a81] font-medium hover:underline inline-flex items-center"
                     >
-                      Read official notification
+                      FBR Finance Act 2025
                       <ChevronRight className="h-4 w-4 ml-1" />
                     </Link>
                   </div>
@@ -1373,17 +1745,17 @@ export default function Home() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                    <h3 className="text-xl font-bold">Withholding Tax Regime (Rates Card) 2024</h3>
-                    <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">July 1, 2024</span>
+                    <h3 className="text-xl font-bold">Withholding Tax Regime (Rates Card) 2025</h3>
+                    <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">July 1, 2025</span>
                   </div>
                   <p className="text-gray-600">
                     It serves as a comprehensive guideline for taxpayers, tax collectors, and withholding agents,
                     detailing the applicable withholding tax rates under various sections of the Income Tax Ordinance,
-                    2001, as updated by the Finance Act, 2024.
+                    2001, as updated by the Finance Act, 2025.
                   </p>
                   <div className="pt-2">
                     <Link
-                      href="https://download1.fbr.gov.pk/Docs/20248211184455183WithholdingTaxRegimeRatesCard2024.pdf"
+                      href="https://download1.fbr.gov.pk/Docs/20258181281745641WHT-RateCard.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#3a5a81] font-medium hover:underline inline-flex items-center"
@@ -1415,7 +1787,7 @@ export default function Home() {
         <div className="container px-2 md:px-4">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-[#e63946] px-3 py-1 text-sm text-white">Contact Us</div>
+              <div className="inline-block rounded-lg bg-[#e63946] px-4 py-2 text-base text-white">Contact Us</div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get in Touch</h2>
             </div>
           </div>
@@ -1484,7 +1856,7 @@ export default function Home() {
                     <span className="sr-only">Facebook</span>
                   </Link>
                   <Link
-                    href="https://www.instagram.com/tahir11063/"
+                    href="https://www.instagram.com/tm_tax_consultants/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full bg-[#E4405F]/10 p-2 text-[#E4405F] hover:bg-[#E4405F]/20"
@@ -1532,7 +1904,7 @@ export default function Home() {
                     <span className="sr-only">LinkedIn</span>
                   </Link>
                   <Link
-                    href="https://www.youtube.com/@tahir11063"
+                    href="https://www.youtube.com/@TMTaxConsultants"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full bg-[#FF0000]/10 p-2 text-[#FF0000] hover:bg-[#FF0000]/20"
@@ -1555,7 +1927,7 @@ export default function Home() {
                     <span className="sr-only">YouTube</span>
                   </Link>
                   <Link
-                    href="https://www.tiktok.com/@tahir.mahmood6890"
+                    href="https://www.tiktok.com/@tm_tax_consultants"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full bg-[#000000]/10 p-2 text-[#000000] hover:bg-[#000000]/20"
@@ -1571,6 +1943,24 @@ export default function Home() {
                       <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.41v13.67a2.89 2.89 0 0 1-5.0 1.96 2.89 2.89 0 0 1 2.47-5.18c.34 0 .68.06 1.0.17v-3.52A6.32 6.32 0 0 0 5.4 10.52a6.34 6.34 0 1 0 9.39 8.4v-5.5a8.16 8.16 0 0 0 4.8 1.5v-3.45a4.85 4.85 0 0 1-1.84-.45z" />
                     </svg>
                     <span className="sr-only">TikTok</span>
+                  </Link>
+                  <Link
+                    href="https://x.com/TM_Tax_Con"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-[#000000]/10 p-2 text-[#000000] hover:bg-[#000000]/20"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="h-5 w-5"
+                    >
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.6l-5.1-6.72-5.85 6.72h-3.306l7.73-8.835L2.882 2.25h6.6l4.759 6.318L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    <span className="sr-only">X (Twitter)</span>
                   </Link>
                   <Link
                     href="https://www.google.com/maps/place/T.M+Tax+Consultants/@31.4363995,74.435064,17z/data=!3m1!4b1!4m6!3m5!1s0x3919095e2a93dedb:0x3e17a3a3928c3ebd!8m2!3d31.4363949!4d74.4376389!16s%2Fg%2F11w9xpcs_d?authuser=0&entry=ttu&g_ep=EgoyMDI1MDMxNy4wIKXMDSoASAFQAw%3D%3D"
@@ -1597,7 +1987,7 @@ export default function Home() {
             <div className="flex items-center">
               <Link href="/" className="flex items-center gap-2">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo.jpg-O4IcwhGPwUjnEHmSYrqEuEwfkz0Jli.jpeg"
+                  src="/images/design-mode/Logo.jpg.jpeg"
                   alt="T.M Tax Consultants Logo"
                   width={150}
                   height={60}
@@ -1607,7 +1997,7 @@ export default function Home() {
             </div>
 
             {/* Navigation links in the center/right */}
-            <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
+            <div className="flex flex-wrap gap-5 md:gap-8 justify-center">
               <Link
                 href="#about"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
@@ -1664,6 +2054,14 @@ export default function Home() {
               >
                 Tax Calculator
               </Link>
+              {/* CHANGE: Updated section name in footer */}
+              <Link
+                href="#tax-laws"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+                onClick={() => scrollToSection("tax-laws")}
+              >
+                Pakistan Tax Laws & Rules
+              </Link>
               <Link
                 href="#verifications"
                 className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
@@ -1677,6 +2075,13 @@ export default function Home() {
                 onClick={() => scrollToSection("tax-updates")}
               >
                 Latest Tax Updates
+              </Link>
+              {/* Added FAQs menu item to footer */}
+              <Link
+                href="/faqs"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
+              >
+                FAQs
               </Link>
               <Link
                 href="#contact"

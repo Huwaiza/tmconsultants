@@ -1,7 +1,6 @@
 import type React from "react"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -16,15 +15,11 @@ export default function RootLayout({
         <title>T.M Tax Consultants</title>
         <meta name="description" content="Expert Tax Solutions for Individuals & Businesses" />
       </head>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   )
 }
 
 export const metadata = {
-      generator: 'v0.dev'
-    };
+  generator: "v0.dev",
+}

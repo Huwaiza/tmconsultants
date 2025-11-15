@@ -10,17 +10,17 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-// Tax slabs for salaried individuals for 2024-25 as per FBR Pakistan
+// Tax slabs for salaried individuals for 2025-26 as per FBR Pakistan
 const salarySlabs = [
   { min: 0, max: 600000, rate: 0, fixedTax: 0 },
-  { min: 600001, max: 1200000, rate: 5, fixedTax: 0 },
-  { min: 1200001, max: 2200000, rate: 15, fixedTax: 30000 },
-  { min: 2200001, max: 3200000, rate: 25, fixedTax: 180000 },
-  { min: 3200001, max: 4100000, rate: 30, fixedTax: 430000 },
-  { min: 4100001, max: Number.POSITIVE_INFINITY, rate: 35, fixedTax: 700000 },
+  { min: 600001, max: 1200000, rate: 1, fixedTax: 0 },
+  { min: 1200001, max: 2200000, rate: 11, fixedTax: 6000 },
+  { min: 2200001, max: 3200000, rate: 23, fixedTax: 116000 },
+  { min: 3200001, max: 4100000, rate: 30, fixedTax: 346000 },
+  { min: 4100001, max: Number.POSITIVE_INFINITY, rate: 35, fixedTax: 616000 },
 ]
 
-// Tax slabs for business individuals for 2024-25 as per FBR Pakistan
+// Tax slabs for business individuals for 2025-26 as per FBR Pakistan
 const businessSlabs = [
   { min: 0, max: 600000, rate: 0, fixedTax: 0 },
   { min: 600001, max: 1200000, rate: 15, fixedTax: 0 },
@@ -87,7 +87,7 @@ export function TaxCalculator() {
       <CardHeader className="bg-[#3a5a81] text-white rounded-t-lg">
         <div className="flex items-center gap-2">
           <Calculator className="h-6 w-6" />
-          <CardTitle>Pakistan Income Tax Calculator 2024-25</CardTitle>
+          <CardTitle>Pakistan Income Tax Calculator 2025-26</CardTitle>
         </div>
         <CardDescription className="text-gray-100">
           Calculate your income tax based on the latest FBR tax slabs
@@ -206,7 +206,7 @@ export function TaxCalculator() {
           <TabsContent value="taxSlabs" className="pt-4">
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-[#3a5a81] mb-2">Salaried Individuals Tax Slabs 2024-25</h3>
+                <h3 className="text-lg font-semibold text-[#3a5a81] mb-2">Salaried Individuals Tax Slabs 2025-26</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse">
                     <thead>
@@ -224,28 +224,28 @@ export function TaxCalculator() {
                       </tr>
                       <tr className="bg-gray-50">
                         <td className="border p-2">600,001 - 1,200,000</td>
-                        <td className="border p-2">5%</td>
+                        <td className="border p-2">1%</td>
                         <td className="border p-2">PKR 0</td>
                       </tr>
                       <tr className="bg-white">
                         <td className="border p-2">1,200,001 - 2,200,000</td>
-                        <td className="border p-2">15%</td>
-                        <td className="border p-2">PKR 30,000</td>
+                        <td className="border p-2">11%</td>
+                        <td className="border p-2">PKR 6,000</td>
                       </tr>
                       <tr className="bg-gray-50">
                         <td className="border p-2">2,200,001 - 3,200,000</td>
-                        <td className="border p-2">25%</td>
-                        <td className="border p-2">PKR 180,000</td>
+                        <td className="border p-2">23%</td>
+                        <td className="border p-2">PKR 116,000</td>
                       </tr>
                       <tr className="bg-white">
                         <td className="border p-2">3,200,001 - 4,100,000</td>
                         <td className="border p-2">30%</td>
-                        <td className="border p-2">PKR 430,000</td>
+                        <td className="border p-2">PKR 346,000</td>
                       </tr>
                       <tr className="bg-gray-50">
                         <td className="border p-2">4,100,001 - Above</td>
                         <td className="border p-2">35%</td>
-                        <td className="border p-2">PKR 700,000</td>
+                        <td className="border p-2">PKR 616,000</td>
                       </tr>
                     </tbody>
                   </table>
@@ -253,7 +253,7 @@ export function TaxCalculator() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-[#3a5a81] mb-2">Business Individuals Tax Slabs 2024-25</h3>
+                <h3 className="text-lg font-semibold text-[#3a5a81] mb-2">Business Individuals Tax Slabs 2025-26</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse">
                     <thead>
@@ -303,7 +303,7 @@ export function TaxCalculator() {
         </Tabs>
       </CardContent>
       <CardFooter className="bg-gray-50 border-t flex justify-between items-center text-sm text-gray-500 rounded-b-lg">
-        <p>Based on FBR Pakistan Tax Slabs for 2024-25</p>
+        <p>Based on FBR Pakistan Tax Slabs for 2025-26</p>
         <p>Disclaimer: For informational purposes only</p>
       </CardFooter>
     </Card>
