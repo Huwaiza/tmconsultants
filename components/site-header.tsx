@@ -1,19 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import ScrollToSection from "@/components/scroll-to-section"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -29,6 +21,69 @@ const resourceItems = [
   { label: "FAQs", href: "/faqs" },
 ]
 
+function DropdownNav({
+  label,
+  items,
+}: {
+  label: string
+  items: { label: string; href: string }[]
+}) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handler)
+    return () => document.removeEventListener("mousedown", handler)
+  }, [])
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className={cn(
+          "inline-flex items-center gap-1 text-sm font-medium px-3 py-2 rounded-md transition-colors",
+          open ? "bg-accent text-accent-foreground" : "hover:bg-accent hover:text-accent-foreground"
+        )}
+      >
+        {label}
+        <ChevronDown
+          className={cn("h-3 w-3 transition-transform duration-200", open && "rotate-180")}
+        />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -4, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4, scale: 0.97 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="absolute left-0 top-full mt-1.5 z-50 w-52 rounded-md border border-border bg-popover shadow-lg overflow-hidden"
+          >
+            <ul className="grid gap-0.5 p-1.5">
+              {items.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="block select-none rounded-md px-3 py-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -39,6 +94,20 @@ export function SiteHeader() {
     window.addEventListener("scroll", handler, { passive: true })
     return () => window.removeEventListener("scroll", handler)
   }, [])
+
+  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const targetId = href.startsWith("/#") ? href.substring(2) : href.startsWith("#") ? href.substring(1) : null
+    if (targetId) {
+      const el = document.getElementById(targetId)
+      if (el) {
+        e.preventDefault()
+        setMobileOpen(false)
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 300)
+        return
+      }
+    }
+    setMobileOpen(false)
+  }
 
   return (
     <>
@@ -65,98 +134,40 @@ export function SiteHeader() {
           </Link>
 
           {/* Desktop Nav */}
-          <NavigationMenu className="hidden lg:flex">
-            <NavigationMenuList className="gap-1">
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/#about"
-                  className="text-sm font-medium px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
-                >
-                  About
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/#services"
-                  className="text-sm font-medium px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
-                >
-                  Services
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/#team"
-                  className="text-sm font-medium px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
-                >
-                  Our Team
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium bg-transparent hover:bg-accent data-[state=open]:bg-accent">
-                  Compliance
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-52 gap-1 p-2">
-                    {complianceItems.map((item) => (
-                      <li key={item.href}>
-                        <NavigationMenuLink asChild>
-                          <a
-                            href={item.href}
-                            className="block select-none rounded-md px-3 py-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            {item.label}
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium bg-transparent hover:bg-accent data-[state=open]:bg-accent">
-                  Resources
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-52 gap-1 p-2">
-                    {resourceItems.map((item) => (
-                      <li key={item.href}>
-                        <NavigationMenuLink asChild>
-                          <a
-                            href={item.href}
-                            className="block select-none rounded-md px-3 py-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            {item.label}
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/#calculator"
-                  className="text-sm font-medium px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
-                >
-                  Tax Tools
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/#contact"
-                  className="text-sm font-medium px-4 py-2 rounded-md bg-brand-blue text-white hover:bg-brand-blue-dark transition-colors"
-                >
-                  Contact Us
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <nav className="hidden lg:flex items-center gap-1">
+            <a
+              href="/#about"
+              className="text-sm font-medium px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              About
+            </a>
+            <a
+              href="/#services"
+              className="text-sm font-medium px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              Services
+            </a>
+            <a
+              href="/#team"
+              className="text-sm font-medium px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              Our Team
+            </a>
+            <DropdownNav label="Compliance" items={complianceItems} />
+            <DropdownNav label="Resources" items={resourceItems} />
+            <a
+              href="/#calculator"
+              className="text-sm font-medium px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              Tax Tools
+            </a>
+            <a
+              href="/#contact"
+              className="text-sm font-medium px-4 py-2 rounded-md bg-brand-blue text-white hover:bg-brand-blue-dark transition-colors"
+            >
+              Contact Us
+            </a>
+          </nav>
 
           {/* Right side: theme toggle + hamburger */}
           <div className="flex items-center gap-2">
@@ -191,7 +202,7 @@ export function SiteHeader() {
                   <a
                     key={item.href}
                     href={item.href}
-                    onClick={() => setMobileOpen(false)}
+                    onClick={(e) => handleMobileNavClick(e, item.href)}
                     className="px-3 py-2.5 rounded-md text-sm font-medium hover:bg-accent transition-colors"
                   >
                     {item.label}
@@ -223,7 +234,7 @@ export function SiteHeader() {
                           <a
                             key={item.href}
                             href={item.href}
-                            onClick={() => setMobileOpen(false)}
+                            onClick={(e) => handleMobileNavClick(e, item.href)}
                             className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors"
                           >
                             {item.label}
@@ -259,7 +270,7 @@ export function SiteHeader() {
                           <a
                             key={item.href}
                             href={item.href}
-                            onClick={() => setMobileOpen(false)}
+                            onClick={(e) => handleMobileNavClick(e, item.href)}
                             className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors"
                           >
                             {item.label}
@@ -272,7 +283,7 @@ export function SiteHeader() {
 
                 <a
                   href="/#contact"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => handleMobileNavClick(e, "/#contact")}
                   className="mt-2 px-4 py-2.5 rounded-md bg-brand-blue text-white text-sm font-medium text-center hover:bg-brand-blue-dark transition-colors"
                 >
                   Contact Us

@@ -104,9 +104,7 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight"
               >
-                Tahir Mahmood
-                <br />
-                <span className="text-white/80">Tax Consultants</span>
+                T.M Tax Consultants
               </motion.h1>
 
               <motion.p
@@ -174,7 +172,7 @@ export default function Home() {
                 <div className="absolute inset-8 rounded-full border border-white/15 animate-[drift-slow_18s_ease-in-out_infinite]" />
                 <div className="absolute inset-16 rounded-full bg-white/5 backdrop-blur-sm flex items-center justify-center">
                   <div className="text-center">
-                    <div className="font-display font-bold text-4xl text-white">TM</div>
+                    <div className="font-display font-bold text-4xl text-white">T.M</div>
                     <div className="text-xs text-white/60 tracking-widest uppercase mt-1">
                       Tax Consultants
                     </div>
@@ -293,7 +291,7 @@ export default function Home() {
                       <h3 className="text-xl font-display font-bold text-brand-blue dark:text-brand-blue-light mb-4">
                         Core Values
                       </h3>
-                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 items-stretch">
                         {[
                           { icon: Heart, label: "Integrity", color: "text-brand-red" },
                           { icon: CheckCircle, label: "Excellence", color: "text-brand-blue dark:text-brand-blue-light" },
@@ -306,10 +304,10 @@ export default function Home() {
                         ].map((value, index) => {
                           const Icon = value.icon
                           return (
-                            <ScrollReveal key={index} delay={index * 0.05}>
-                              <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-muted hover:bg-accent transition-colors">
+                            <ScrollReveal key={index} delay={index * 0.05} className="h-full">
+                              <div className="flex flex-col items-center justify-center gap-2 p-3 rounded-lg bg-muted hover:bg-accent transition-colors h-full min-h-[80px]">
                                 <Icon className={`h-6 w-6 flex-shrink-0 ${value.color}`} />
-                                <span className="font-medium text-foreground text-sm text-center">
+                                <span className="font-medium text-foreground text-sm text-center leading-tight">
                                   {value.label}
                                 </span>
                               </div>
@@ -606,6 +604,32 @@ export default function Home() {
                     ))}
                   </ul>
                 </div>
+              </TiltCard>
+            </ScrollReveal>
+
+            {/* Federal Tax Ombudsman */}
+            <ScrollReveal delay={0.55}>
+              <TiltCard className="rounded-lg border bg-card p-6 shadow-sm hover:border-brand-red transition-colors">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="rounded-full bg-brand-red/10 p-3">
+                    <Shield className="h-6 w-6 text-brand-red" />
+                  </div>
+                  <h3 className="text-2xl font-display font-bold">
+                    Federal Tax Ombudsman (FTO) Complaint &amp; Representation Services
+                  </h3>
+                </div>
+                <ul className="space-y-2">
+                  {[
+                    "Filing complaints with the Federal Tax Ombudsman against FBR maladministration",
+                    "Representation before FTO for taxpayer grievance redressal",
+                    "Follow-up and implementation of FTO recommendations",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <ChevronRight className="h-5 w-5 text-brand-red mt-0.5 flex-shrink-0" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </TiltCard>
             </ScrollReveal>
           </div>

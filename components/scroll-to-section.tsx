@@ -12,16 +12,29 @@ export default function ScrollToSection() {
       if (!link) return
 
       const href = link.getAttribute("href")
-      if (!href || !href.startsWith("#")) return
+      if (!href) return
+
+      // Handle both "#section" and "/#section" formats
+      let targetId: string | null = null
+      if (href.startsWith("#")) {
+        targetId = href.substring(1)
+      } else if (href.startsWith("/#")) {
+        targetId = href.substring(2)
+        const targetElement = document.getElementById(targetId)
+        if (targetElement) {
+          e.preventDefault()
+          targetElement.scrollIntoView({ behavior: "smooth" })
+        }
+        return
+      } else {
+        return
+      }
 
       e.preventDefault()
-      const targetId = href.substring(1)
       const targetElement = document.getElementById(targetId)
 
       if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: "smooth",
-        })
+        targetElement.scrollIntoView({ behavior: "smooth" })
       }
     }
 

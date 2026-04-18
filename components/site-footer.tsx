@@ -12,7 +12,7 @@ export function SiteFooter() {
               alt="T.M Tax Consultants"
               width={120}
               height={48}
-              className="h-12 w-auto object-contain mb-4 brightness-0 invert"
+              className="h-12 w-auto object-contain mb-4"
             />
             <p className="text-sm text-gray-400 leading-relaxed">
               Expert tax solutions for individuals and businesses in Pakistan.
