@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { ScrollToSection } from "@/components/scroll-to-section"
+import ScrollToSection from "@/components/scroll-to-section"
 import {
   NavigationMenu,
   NavigationMenuContent,
