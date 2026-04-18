@@ -1,26 +1,13 @@
 'use client'
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { ChevronDown, HelpCircle, X } from 'lucide-react'
+import { ChevronDown, HelpCircle } from 'lucide-react'
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
+import { AnimatePresence, motion } from 'framer-motion'
+import { SiteHeader } from '@/components/site-header'
+import { SiteFooter } from '@/components/site-footer'
 
 export default function FAQsPage() {
   const [expandedId, setExpandedId] = useState<number | null>(0)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen)
-  }
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-    setMobileMenuOpen(false)
-  }
 
   const faqs = [
     {
@@ -50,53 +37,53 @@ export default function FAQsPage() {
     },
     {
       id: 6,
-      question: 'What is a National Tax Number (NTN)?',
-      answer: 'An NTN is a unique identification number issued by the FBR to taxpayers and persons earning income. It is mandatory for filing income tax returns, obtaining import/export licenses, and conducting business activities. You can obtain an NTN from FBR through the IRIS portal or at any FBR office.'
+      question: 'What is the National Tax Number (NTN) and how can I register?',
+      answer: 'The National Tax Number (NTN) is a unique identifier assigned to taxpayers by the FBR. To register, you need a valid CNIC, bank account, utility bill, and passport-size photo. Registration can be done online through the IRIS portal or at any Regional Tax Office. NTN is mandatory for business registration and certain financial transactions.'
     },
     {
       id: 7,
-      question: 'What is a Sales Tax Registration Number (STRN)?',
-      answer: 'An STRN is a unique identifier issued by the FBR for persons registered under the Sales Tax Act, 1990. Businesses involved in supply of goods/services above the threshold limit must obtain an STRN and file Sales Tax returns.'
+      question: 'What are the penalties for late tax filing in Pakistan?',
+      answer: 'Penalties for late filing include: 0.1% of tax payable per day of delay (minimum PKR 500 per day), potential prosecution for persistent non-filers, higher withholding tax rates on various transactions, and restricted access to government contracts and tenders. Non-filers are also subject to additional surcharges on many financial transactions.'
     },
     {
       id: 8,
-      question: 'What is the difference between gross income and taxable income?',
-      answer: 'Gross income is the total income from all sources before any deductions or exemptions. Taxable income is calculated by deducting eligible expenses, losses, and exemptions from gross income. Only taxable income is subject to income tax calculation.'
+      question: 'What is the difference between a filer and non-filer in Pakistan?',
+      answer: 'A filer is someone registered with FBR and has filed income tax returns. Filers enjoy lower withholding tax rates on banking transactions, property purchases, vehicle registrations, and other financial activities. Non-filers pay significantly higher rates (often double) on these transactions as a penalty incentive to encourage registration.'
     },
     {
       id: 9,
-      question: 'Can I claim deductions for professional expenses?',
-      answer: 'Yes, as a self-employed professional or business owner, you can claim legitimate business expenses as deductions. These may include office rent, utilities, professional fees, depreciation of assets, and employee salaries. However, only genuine and documented expenses are allowed.'
+      question: 'How are business income and profits taxed in Pakistan?',
+      answer: 'Business income is taxed according to corporate tax rates (currently 29% for companies) or personal income tax rates for sole proprietors and partnerships. Businesses must also comply with sales tax, withholding tax, and advance tax requirements. Certain deductible expenses reduce taxable income — professional tax advice is recommended.'
     },
     {
       id: 10,
-      question: 'What are capital gains and how are they taxed?',
-      answer: 'Capital gains are profits from the sale of capital assets such as property or investments. In Pakistan, capital gains are taxed according to the holding period: short-term capital gains (held less than 1 year) may be taxed differently than long-term gains (held more than 1 year). Consult current tax laws for applicable rates.'
+      question: 'What is withholding tax and how does it affect me?',
+      answer: 'Withholding tax (WHT) is collected at source by payers before remitting income. It applies to salaries, dividends, interest, rent, contracts, and many other transactions. For filers, WHT rates are lower and can be adjusted against final tax liability. For non-filers, higher WHT rates apply and may not be fully adjustable, effectively becoming an additional tax burden.'
     },
     {
       id: 11,
-      question: 'What is tax amnesty and when is it offered?',
-      answer: 'Tax amnesty is a temporary scheme offered by the FBR allowing undisclosed income to be declared with reduced penalties or tax rates. These schemes are announced periodically and have specific terms and conditions. Availing amnesty helps bring informal economy into the tax net.'
+      question: 'How can I check my Active Taxpayer status on the FBR portal?',
+      answer: 'You can verify your Active Taxpayer (ATP) status through the FBR\'s IRIS portal (iris.fbr.gov.pk) or via SMS by sending your CNIC number to 9966. ATP status is updated annually after filing returns. Maintaining ATP status ensures you benefit from lower withholding tax rates and other privileges available only to active taxpayers.'
     },
     {
       id: 12,
-      question: 'How can I verify my FBR status online?',
-      answer: 'You can verify your FBR status through the IRIS portal at iris.fbr.gov.pk. Log in with your NTN and password to check your filing history, assessment details, and any pending compliance requirements. You can also download copies of your filed returns and FBR correspondence.'
+      question: 'What is wealth reconciliation and why is it required?',
+      answer: 'Wealth reconciliation is a mandatory part of the income tax return that compares your opening and closing net wealth. You must justify any increase in wealth through declared income. Unexplained wealth increases can trigger tax assessments and penalties. Accurate wealth statements help maintain compliance and avoid scrutiny by tax authorities.'
     },
     {
       id: 13,
-      question: 'What are the penalties for late tax return filing?',
-      answer: 'Late filing penalties are calculated as a percentage of the tax due, starting from 5% for the first 30 days late, and increasing further for longer delays. Penalties can be substantial, making timely filing important. The FBR may also impose additional penalties for non-compliance with other tax obligations.'
+      question: 'Are there any tax exemptions for small businesses or startups?',
+      answer: 'Pakistan offers various incentives for startups and small businesses including reduced tax rates in Special Economic Zones, tax holidays for certain sectors, and startup-specific incentives under the Finance Acts. The government has also introduced simplified tax regimes for small traders and shopkeepers. Consulting a tax professional is advisable to identify applicable exemptions.'
     },
     {
       id: 14,
-      question: 'Can I file an amended income tax return after submission?',
-      answer: 'Yes, under Section 114 of the Income Tax Ordinance, 2001, you can file a revised or amended return before the assessment date. This allows you to correct errors or include additional income/expenses. File the amended return through IRIS with proper documentation.'
+      question: 'How does the Double Taxation Avoidance Treaty (DTAT) work?',
+      answer: 'Pakistan has signed DTATs with over 65 countries to prevent double taxation of income earned in one country by residents of another. These treaties specify which country has the right to tax different types of income (salary, dividends, royalties, etc.) and at what rates. DTATs can significantly reduce tax burdens for international workers and businesses.'
     },
     {
       id: 15,
-      question: 'What is advance tax and when must it be paid?',
-      answer: 'Advance tax is tax paid in advance during the tax year before the final assessment. Different categories of advance tax include on import of goods, services, and turn-over tax for certain businesses. Payment dates and rates are determined by the FBR annually. Failure to pay advance tax can result in penalties.'
+      question: 'What are the tax implications of selling property in Pakistan?',
+      answer: 'Capital gains from property sales are taxed based on the holding period: gains on property held for less than one year are taxed at 15%, reducing gradually to 0% for property held over four years. Additionally, advance tax on property transactions applies at rates that differ for filers and non-filers. FBR valuation rates (DC rates) apply alongside market value considerations.'
     },
     {
       id: 16,
@@ -126,409 +113,76 @@ export default function FAQsPage() {
   ]
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-white">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white">
-        <div className="container flex h-16 md:h-20 items-center justify-between px-2 md:px-4">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/images/design-mode/Logo.jpg.jpeg"
-              alt="T.M Tax Consultants Logo"
-              width={180}
-              height={72}
-              className="h-10 md:h-14 w-auto object-contain"
-              priority
-            />
-          </Link>
-          <nav className="hidden md:flex items-center">
-            <div className="flex gap-3 lg:gap-6">
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("about")}
-              >
-                About Us
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("services")}
-              >
-                Our Services
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("slogan")}
-              >
-                Our Slogan
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("team")}
-              >
-                Our Team
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("testimonials")}
-              >
-                Testimonials
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("tax-returns")}
-              >
-                Persons To File Return
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("registration-docs")}
-              >
-                Registration Documents
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("calculator")}
-              >
-                Tax Calculator
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("tax-laws")}
-              >
-                Pakistan Tax Laws & Rules
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("verifications")}
-              >
-                Online Verifications
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("tax-updates")}
-              >
-                Latest Tax Updates
-              </Link>
-              <Link
-                href="/faqs"
-                className="text-sm font-medium text-primary font-semibold transition-colors hover:text-primary whitespace-nowrap"
-              >
-                FAQs
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => scrollToSection("contact")}
-              >
-                Contact Us
-              </Link>
-            </div>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button variant="outline" size="icon" className="md:hidden bg-transparent" onClick={toggleMobileMenu}>
-              <span className="sr-only">Toggle menu</span>
-              {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-6 w-6"
-                >
-                  <line x1="4" x2="20" y1="12" y2="12" />
-                  <line x1="4" x2="20" y1="6" y2="6" />
-                  <line x1="4" x2="20" y1="18" y2="18" />
-                </svg>
-              )}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t py-4">
-            <nav className="container px-2 flex flex-col space-y-3">
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("about")}
-              >
-                About Us
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("services")}
-              >
-                Our Services
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("slogan")}
-              >
-                Our Slogan
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("team")}
-              >
-                Our Team
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("testimonials")}
-              >
-                Testimonials
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("tax-returns")}
-              >
-                Persons To File Return
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("registration-docs")}
-              >
-                Registration Documents
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("calculator")}
-              >
-                Tax Calculator
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("tax-laws")}
-              >
-                Pakistan Tax Laws & Rules
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("verifications")}
-              >
-                Online Verifications
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("tax-updates")}
-              >
-                Latest Tax Updates
-              </Link>
-              <Link
-                href="/faqs"
-                className="text-sm font-medium text-primary font-semibold transition-colors hover:text-primary py-2"
-              >
-                FAQs
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary py-2"
-                onClick={() => scrollToSection("contact")}
-              >
-                Contact Us
-              </Link>
-            </nav>
-          </div>
-        )}
-      </header>
+    <div className="w-full min-h-screen flex flex-col">
+      <SiteHeader />
 
       {/* FAQs Hero Section */}
-      <section className="w-full bg-gradient-to-r from-[#3a5a81] to-[#4a6fa5] py-8 md:py-16">
-        <div className="container px-2 md:px-4">
+      <section className="w-full bg-brand-blue py-12 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <div className="flex justify-center mb-4">
-              <div className="bg-white/20 p-3 rounded-full">
+              <div className="bg-white/20 p-4 rounded-full">
                 <HelpCircle className="h-12 w-12 text-white" />
               </div>
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance">
+            <h1 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white text-balance">
               Frequently Asked Questions
             </h1>
-            <p className="text-white/90 text-lg md:text-xl">
-              Find answers to common questions about income tax filing, FBR regulations, and IRIS portal
+            <p className="text-white/80 text-lg md:text-xl">
+              Find answers to common questions about income tax filing, FBR regulations, and the IRIS portal.
             </p>
           </div>
         </div>
       </section>
 
       {/* FAQs Content */}
-      <section className="w-full py-12 md:py-16 flex-grow">
-        <div className="container px-2 md:px-4">
-          <div className="max-w-3xl mx-auto space-y-4">
-            {faqs.map((faq) => (
-              <div
-                key={faq.id}
-                className="border border-gray-200 rounded-lg overflow-hidden hover:border-[#3a5a81] transition-colors"
+      <section className="w-full py-12 md:py-20 flex-grow bg-background">
+        <div className="max-w-3xl mx-auto px-4 md:px-8 space-y-3">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={faq.id}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.03, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="border border-border rounded-xl overflow-hidden hover:border-brand-blue/40 transition-colors"
+            >
+              <button
+                onClick={() => setExpandedId(expandedId === faq.id ? null : faq.id)}
+                className="w-full px-6 py-4 flex items-start justify-between gap-4 bg-card hover:bg-accent transition-colors text-left"
               >
-                <button
-                  onClick={() => setExpandedId(expandedId === faq.id ? null : faq.id)}
-                  className="w-full px-6 py-4 flex items-start justify-between gap-4 bg-white hover:bg-gray-50 transition-colors"
-                >
-                  <span className="text-left font-semibold text-[#3a5a81] text-balance">
-                    {faq.question}
-                  </span>
-                  <ChevronDown
-                    className={`h-5 w-5 text-[#3a5a81] flex-shrink-0 transition-transform mt-1 ${
-                      expandedId === faq.id ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
+                <span className="font-display font-semibold text-brand-blue dark:text-brand-blue-light text-balance">
+                  {faq.question}
+                </span>
+                <ChevronDown
+                  className={`h-5 w-5 text-brand-blue dark:text-brand-blue-light flex-shrink-0 transition-transform mt-0.5 ${
+                    expandedId === faq.id ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+              <AnimatePresence>
                 {expandedId === faq.id && (
-                  <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
-                    <p className="text-gray-700 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
+                  <motion.div
+                    key={faq.id}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-5 pt-1 bg-muted border-t border-border">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </motion.div>
                 )}
-              </div>
-            ))}
-          </div>
+              </AnimatePresence>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="w-full border-t bg-gray-50 py-6 md:py-12">
-        <div className="container px-2 md:px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center gap-2">
-                <Image
-                  src="/images/design-mode/Logo.jpg.jpeg"
-                  alt="T.M Tax Consultants Logo"
-                  width={150}
-                  height={60}
-                  className="h-9 md:h-12 w-auto object-contain"
-                />
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap gap-5 md:gap-8 justify-center">
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("about")}
-              >
-                About Us
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("services")}
-              >
-                Our Services
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("slogan")}
-              >
-                Our Slogan
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("team")}
-              >
-                Our Team
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("testimonials")}
-              >
-                Testimonials
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("tax-returns")}
-              >
-                Persons To File Return
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("registration-docs")}
-              >
-                Registration Documents
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("calculator")}
-              >
-                Tax Calculator
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("tax-laws")}
-              >
-                Pakistan Tax Laws & Rules
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("verifications")}
-              >
-                Online Verifications
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("tax-updates")}
-              >
-                Latest Tax Updates
-              </Link>
-              <Link
-                href="/faqs"
-                className="text-sm font-medium text-primary font-semibold transition-colors hover:text-[#3a5a81]"
-              >
-                FAQs
-              </Link>
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-[#3a5a81]"
-                onClick={() => scrollToSection("contact")}
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-
-          <div className="mt-8 border-t py-4 text-center text-sm text-gray-500">
-            &copy; 2025 T.M Tax Consultants. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
