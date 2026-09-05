@@ -13,7 +13,7 @@ export default function FAQsPage() {
     {
       id: 1,
       question: 'Who is required to file an income tax return in Pakistan?',
-      answer: 'According to FBR regulations, any person whose income exceeds the taxable income threshold for the relevant tax year must file an income tax return. For FY 2025-26, the threshold is generally PKR 600,000 for salaried individuals. Self-employed persons, business owners, and corporate entities must file regardless of income level.'
+      answer: 'According to FBR regulations, any person whose income exceeds the taxable income threshold for the relevant tax year must file an income tax return. For FY 2026-27, the threshold is generally PKR 600,000 for salaried individuals. Self-employed persons, business owners, and corporate entities must file regardless of income level.'
     },
     {
       id: 2,

@@ -709,7 +709,7 @@ export default function Home() {
                 bio: "Muhammad Yasir specializes in corporate taxation and has helped numerous businesses optimize their tax strategies.",
               },
               {
-                src: "/images/design-mode/1742285757638.jpg.jpeg",
+                src: "/images/huwaiza-tahir.jpg",
                 name: "Muhammad Huwaiza Tahir (BSCS)",
                 role: "Tax Compliance Specialist",
                 qualification: "BSCS",
@@ -995,7 +995,7 @@ export default function Home() {
               </h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
                 Use our free tax calculator to estimate your income tax based on the latest FBR tax
-                slabs for 2025-26.
+                slabs for 2026-27.
               </p>
             </div>
           </ScrollReveal>
@@ -1028,19 +1028,19 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                href: "https://download1.fbr.gov.pk/Docs/2025881983148210Income-Tax-Ordinance,-2001-Amended-upto-31.07.2025.pdf",
+                href: "https://download1.fbr.gov.pk/Docs/2026724177725705IncomeTaxOrdinanace2001.pdf",
                 title: "Income Tax Ordinance, 2001",
-                date: "Amended up to 31.07.2025",
+                date: "Amended up to 30.06.2026",
               },
               {
-                href: "https://download1.fbr.gov.pk/Docs/202586148252375SalesTaxActupdatedupto2025-26.pdf",
+                href: "https://download1.fbr.gov.pk/Docs/20267171373418951SalesTaxAct1990updatedupto30.06.2026.pdf",
                 title: "Sales Tax Act, 1990",
-                date: "Updated up to 2025-26",
+                date: "Amended up to 30.06.2026",
               },
               {
-                href: "https://download1.fbr.gov.pk/Docs/202588138517680FEDAct,2005withindexupdatedupto30-06-2025.pdf",
+                href: "https://download1.fbr.gov.pk/Docs/20267171373633512FEDAct2005updatedupto30-06-2026.pdf",
                 title: "Federal Excise Act, 2005",
-                date: "Updated up to 30.06.2025",
+                date: "Amended up to 30.06.2026",
               },
               {
                 href: "https://download1.fbr.gov.pk/Docs/20258121285942396CustomsAct1969(June2025)-(12.8.25).pdf",
@@ -1055,7 +1055,7 @@ export default function Home() {
               {
                 href: "https://download1.fbr.gov.pk/Docs/2025881385446623STR-2006-UpdatedUpto06-08-2025(ver-iv).pdf",
                 title: "Sales Tax Rules, 2006",
-                date: "Updated up to 06.08.2025",
+                date: "Amended up to 30.06.2025",
               },
               {
                 href: "https://download1.fbr.gov.pk/Docs/2023111018112130929FED-Rules-2005-updated-upto-31.10.2023.pdf",
@@ -1065,7 +1065,7 @@ export default function Home() {
               {
                 href: "https://download1.fbr.gov.pk/Docs/2023102014103110714Customs-Rules-SRO-450(I)-2001.pdf",
                 title: "Customs Rules, 2001",
-                date: "SRO 450(I)",
+                date: "S.R.O. 450(I)/2001 — Amended up to 18.06.2001",
               },
             ].map((doc, index) => (
               <ScrollReveal key={doc.title} delay={index * 0.06}>
@@ -1163,17 +1163,17 @@ export default function Home() {
           <div className="mx-auto max-w-4xl space-y-6">
             {[
               {
-                title: "FBR Finance Act, 2025",
-                date: "July 1, 2025",
-                desc: "The Finance Act, 2025 has introduced major amendments to the Income Tax Ordinance, 2001. These include updates in withholding tax structure, treatment of pensions, capital gains, and digital compliance. These reforms aim to broaden the tax base and simplify compliance for all taxpayers.",
-                link: "https://fbr.gov.pk/Budget2025-26/FinanceBill/Finance-Bill-2025.pdf",
-                linkText: "FBR Finance Act 2025",
+                title: "FBR Finance Act, 2026",
+                date: "July 1, 2026",
+                desc: "The Finance Act, 2026 has introduced major amendments to the Income Tax Ordinance, 2001. Salaried tax slabs have been restructured with additional intermediate slabs, and the threshold for the maximum 35% rate has been raised from PKR 4.1 million to PKR 7 million. Section 7E on deemed income from immovable property has been omitted, Super Tax has been abolished for income up to PKR 500 million, and advance tax on property transactions under sections 236C and 236K has been reduced to flat rates.",
+                link: "https://download1.fbr.gov.pk/Docs/20266291261044366FinanceAct2026.pdf",
+                linkText: "FBR Finance Act 2026",
               },
               {
-                title: "Amendment in SRO 1724(I)/2024 Regarding Valuation Tables of Immoveable Property of (Karachi)",
-                date: "February 11, 2025",
-                desc: "In exercise of the powers conferred by sub-section (4) of section 68 of the Income Tax Ordinance, 2001 (XLX of 2001), the Federal Board of Revenue (FBR) has made amendments in its Notification No. S.R.O.1724(l)/2024, dated the 29th October 2024.",
-                link: "https://download1.fbr.gov.pk/SROs/20252111624752700SRO144.pdf",
+                title: "Special Procedure for Small Shopkeepers (S.R.O. 1166(I)/2026)",
+                date: "July 27, 2026",
+                desc: "In exercise of the powers conferred by section 99B read with sub-section (1) of section 237 of the Income Tax Ordinance, 2001 (XLIX of 2001), the Federal Board of Revenue (FBR) has notified an optional, simplified regime for individual retailers with annual turnover up to PKR 200 million. Tax is charged at 1% of gross turnover, subject to a minimum payment of PKR 25,000 in cash with the return, and participating shopkeepers are exempt from routine audit, withholding under section 153, minimum tax under section 113, and mandatory POS or digital invoicing.",
+                link: "https://download1.fbr.gov.pk/SROs/20267271872152110DraftSRO1166.pdf",
                 linkText: "Read official notification",
               },
               {
@@ -1184,10 +1184,10 @@ export default function Home() {
                 linkText: "Check updated valuation tables",
               },
               {
-                title: "Withholding Tax Regime (Rates Card) 2025",
-                date: "July 1, 2025",
-                desc: "It serves as a comprehensive guideline for taxpayers, tax collectors, and withholding agents, detailing the applicable withholding tax rates under various sections of the Income Tax Ordinance, 2001, as updated by the Finance Act, 2025.",
-                link: "https://download1.fbr.gov.pk/Docs/20258181281745641WHT-RateCard.pdf",
+                title: "Withholding Tax Regime (Rates Card) 2026",
+                date: "July 1, 2026",
+                desc: "It serves as a comprehensive guideline for taxpayers, tax collectors, and withholding agents, detailing the applicable withholding tax rates under various sections of the Income Tax Ordinance, 2001, updated up to 30 June 2026 as per the Finance Act, 2026.",
+                link: "https://download1.fbr.gov.pk/Docs/202681113864992WithholdingTaxRatesCard2027.pdf",
                 linkText: "View Complete Withholding Tax Card",
               },
             ].map((update, index) => (
